@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'movie_provider.dart'; // Sesuaikan dengan path provider Anda
-import 'popular_movie.dart'; // Sesuaikan dengan path layar Anda
-import 'now_playing.dart'; // Sesuaikan dengan path layar Anda
+import 'movie_provider.dart'; 
+import 'popular_movie.dart'; 
+import 'now_playing.dart'; 
+import 'profile/profile.dart'; 
+import 'pemesanan.dart'; 
 
 void main() {
   runApp(MyApp());
@@ -14,10 +16,10 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MovieProvider(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Movie App',
         theme: ThemeData(
           primarySwatch: Colors.blue,
-          scaffoldBackgroundColor: Colors.white,
         ),
         home: MainScreen(),
       ),
@@ -30,7 +32,16 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Movie App'),
+        backgroundColor: Colors.blue, 
+        title: Row(
+          children: [
+            Icon(Icons.movie, color: Colors.white), 
+            SizedBox(width: 8),
+            Text('Movie App',
+                style: TextStyle(
+                    color: Colors.white)), 
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -44,7 +55,7 @@ class MainScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 200, // Tinggi untuk setiap baris film
+              height: 200, 
               child: PopularMoviesScreen(),
             ),
             Padding(
@@ -55,7 +66,7 @@ class MainScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 200, // Tinggi untuk setiap baris film
+              height: 200, 
               child: NowPlayingMoviesScreen(),
             ),
           ],
@@ -79,6 +90,28 @@ class MainScreen extends StatelessWidget {
             label: 'Profil',
           ),
         ],
+        onTap: (int index) {
+          switch (index) {
+            case 0:
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyApp(),
+                ),
+              );
+              break;
+            case 1:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => BookingListScreen()),
+              );
+              break;
+            case 2:
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProfileScreen()));
+              break;
+          }
+        },
       ),
     );
   }

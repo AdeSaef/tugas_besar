@@ -3,14 +3,14 @@ class Movie {
   String title;
   String releaseDate;
   String posterPath;
-  String overview; // Tambahkan properti overview
+  String overview; 
 
   Movie({
     required this.id,
     required this.title,
     required this.releaseDate,
     required this.posterPath,
-    required this.overview, // Tambahkan required parameter
+    required this.overview, 
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) {
@@ -18,8 +18,9 @@ class Movie {
       id: json['id'].toString(),
       title: json['title'],
       releaseDate: json['release_date'],
-      posterPath: 'https://image.tmdb.org/t/p/w500${json['poster_path']}',
-      overview: json['overview'], // Ambil overview dari respons JSON
+      posterPath: 'https:
+      overview: json['overview'], 
     );
   }
 }
+

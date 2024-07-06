@@ -1,8 +1,11 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'movie_provider.dart'; // Sesuaikan dengan path provider Anda
-import 'movie.dart'; // Sesuaikan dengan path model Anda
-import 'movie_detail.dart'; // Sesuaikan dengan path layar detail film Anda
+import 'movie_provider.dart';
+import 'movie_detail.dart';
+import 'profile/profile_manager.dart';
+import 'profile/user_profile.dart';
 
 class PopularMoviesScreen extends StatefulWidget {
   @override
@@ -11,11 +14,13 @@ class PopularMoviesScreen extends StatefulWidget {
 
 class _PopularMoviesScreenState extends State<PopularMoviesScreen> {
   bool _isLoading = false;
+  late UserProfile userProfile;
 
   @override
   void initState() {
     super.initState();
     _fetchPopularMovies();
+    _loadUserProfile();
   }
 
   Future<void> _fetchPopularMovies() async {
@@ -25,7 +30,7 @@ class _PopularMoviesScreenState extends State<PopularMoviesScreen> {
     try {
       await Provider.of<MovieProvider>(context, listen: false).fetchPopularMovies();
     } catch (error) {
-      // Handle error
+      
       print('Error fetching popular movies: $error');
     } finally {
       if (mounted) {
@@ -34,6 +39,10 @@ class _PopularMoviesScreenState extends State<PopularMoviesScreen> {
         });
       }
     }
+  }
+
+  Future<void> _loadUserProfile() async {
+    userProfile = await ProfileManager().loadProfile() ?? UserProfile(name: '', email: '');
   }
 
   @override
@@ -53,7 +62,7 @@ class _PopularMoviesScreenState extends State<PopularMoviesScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MovieDetailScreen(movie: movie),
+                      builder: (context) => MovieDetailScreen(movie: movie, userProfile: userProfile),
                     ),
                   );
                 },

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'movie_provider.dart'; // Sesuaikan dengan path provider Anda
-import 'movie.dart'; // Sesuaikan dengan path model Anda
-import 'movie_detail.dart'; // Sesuaikan dengan path layar detail film Anda
+import 'movie_provider.dart'; 
+import 'movie_detail.dart'; 
+import 'profile/profile_manager.dart'; 
+import 'profile/user_profile.dart'; 
 
 class NowPlayingMoviesScreen extends StatefulWidget {
   @override
@@ -11,11 +12,13 @@ class NowPlayingMoviesScreen extends StatefulWidget {
 
 class _NowPlayingMoviesScreenState extends State<NowPlayingMoviesScreen> {
   bool _isLoading = false;
+  late UserProfile userProfile; 
 
   @override
   void initState() {
     super.initState();
     _fetchNowPlayingMovies();
+    _loadUserProfile(); 
   }
 
   Future<void> _fetchNowPlayingMovies() async {
@@ -25,7 +28,7 @@ class _NowPlayingMoviesScreenState extends State<NowPlayingMoviesScreen> {
     try {
       await Provider.of<MovieProvider>(context, listen: false).fetchNowPlayingMovies();
     } catch (error) {
-      // Handle error
+      
       print('Error fetching now playing movies: $error');
     } finally {
       if (mounted) {
@@ -34,6 +37,10 @@ class _NowPlayingMoviesScreenState extends State<NowPlayingMoviesScreen> {
         });
       }
     }
+  }
+
+  Future<void> _loadUserProfile() async {
+    userProfile = await ProfileManager().loadProfile() ?? UserProfile(name: '', email: '');
   }
 
   @override
@@ -53,7 +60,7 @@ class _NowPlayingMoviesScreenState extends State<NowPlayingMoviesScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MovieDetailScreen(movie: movie),
+                      builder: (context) => MovieDetailScreen(movie: movie, userProfile: userProfile),
                     ),
                   );
                 },
