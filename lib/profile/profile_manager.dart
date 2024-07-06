@@ -36,14 +36,14 @@ class ProfileManager {
     List<String>? bookings = prefs.getStringList(_keyBookings) ?? [];
     bookings.add(jsonEncode(booking.toJson()));
     await prefs.setStringList(_keyBookings, bookings);
-    print('Booking saved: ${booking.toJson()}'); 
+    print('Booking saved: ${booking.toJson()}'); // Debug print
   }
 
   Future<List<Booking>> loadBookings() async {
     final prefs = await SharedPreferences.getInstance();
     List<String>? bookings = prefs.getStringList(_keyBookings);
     if (bookings == null) {
-      print('No bookings found'); 
+      print('No bookings found'); // Debug print
       return [];
     }
     return bookings.map((b) => Booking.fromJson(jsonDecode(b))).toList();

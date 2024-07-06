@@ -1,4 +1,4 @@
-
+// popular_movie.dart
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +30,7 @@ class _PopularMoviesScreenState extends State<PopularMoviesScreen> {
     try {
       await Provider.of<MovieProvider>(context, listen: false).fetchPopularMovies();
     } catch (error) {
-      
+      // Handle error
       print('Error fetching popular movies: $error');
     } finally {
       if (mounted) {

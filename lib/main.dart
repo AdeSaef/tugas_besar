@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'movie_provider.dart'; 
-import 'popular_movie.dart'; 
-import 'now_playing.dart'; 
-import 'profile/profile.dart'; 
-import 'pemesanan.dart'; 
+import 'movie_provider.dart'; // Sesuaikan dengan path provider Anda
+import 'popular_movie.dart'; // Sesuaikan dengan path layar Anda
+import 'now_playing.dart'; // Sesuaikan dengan path layar Anda
+import 'profile/profile.dart'; // Import halaman profil
+import 'pemesanan.dart'; // Import halaman edit profil
 
 void main() {
   runApp(MyApp());
@@ -32,14 +32,14 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue, 
+        backgroundColor: Colors.blue, // Warna latar belakang biru
         title: Row(
           children: [
-            Icon(Icons.movie, color: Colors.white), 
+            Icon(Icons.movie, color: Colors.white), // Icon film di sebelah kiri
             SizedBox(width: 8),
             Text('Movie App',
                 style: TextStyle(
-                    color: Colors.white)), 
+                    color: Colors.white)), // Teks Movie App dengan warna putih
           ],
         ),
       ),
@@ -55,7 +55,7 @@ class MainScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 200, 
+              height: 200, // Tinggi untuk setiap baris film
               child: PopularMoviesScreen(),
             ),
             Padding(
@@ -66,7 +66,7 @@ class MainScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 200, 
+              height: 200, // Tinggi untuk setiap baris film
               child: NowPlayingMoviesScreen(),
             ),
           ],

@@ -12,14 +12,14 @@ class _BookingListScreenState extends State<BookingListScreen> {
   Future<List<Booking>> _loadBookings() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String>? bookings = prefs.getStringList('bookings') ?? [];
-    print('Total bookings found: ${bookings.length}'); 
+    print('Total bookings found: ${bookings.length}'); // Debug print
     return bookings.map((booking) {
       try {
         return Booking.fromJson(jsonDecode(booking));
       } catch (e) {
         print('Error decoding JSON: $e');
         return Booking(
-          userName: '', 
+          userName: '', // Provide default values for required parameters
           userEmail: '',
           movieTitle: '',
           moviePoster: '',
@@ -34,7 +34,7 @@ class _BookingListScreenState extends State<BookingListScreen> {
     if (bookings.isNotEmpty && index >= 0 && index < bookings.length) {
       bookings.removeAt(index);
       await prefs.setStringList('bookings', bookings);
-      setState(() {}); 
+      setState(() {}); // Perbarui UI setelah penghapusan
     }
   }
 
@@ -53,7 +53,7 @@ class _BookingListScreenState extends State<BookingListScreen> {
     List<String>? bookings = prefs.getStringList('bookings') ?? [];
     bookings.add(jsonEncode(newBooking.toJson()));
     await prefs.setStringList('bookings', bookings);
-    setState(() {}); 
+    setState(() {}); // Perbarui UI setelah penambahan
   }
 
   @override
@@ -73,7 +73,7 @@ class _BookingListScreenState extends State<BookingListScreen> {
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return Center(child: Text('No bookings found.'));
           } else {
-            
+            // Debug print untuk menampilkan data yang berhasil dimuat
             print('Bookings loaded successfully: ${snapshot.data}');
 
             return ListView.builder(

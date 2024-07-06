@@ -9,17 +9,17 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  
+  // Initialize with placeholder values
   String nama = 'Om asep bengkel';
   String email = 'coba_coba@gmail.com';
 
   @override
   void initState() {
     super.initState();
-    loadProfileData(); 
+    loadProfileData(); // Load profile data when screen initializes
   }
 
-  
+  // Method to load profile data from SharedPreferences
   void loadProfileData() async {
     UserProfile? userProfile = await ProfileManager().loadProfile();
     if (userProfile != null) {
@@ -39,7 +39,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           IconButton(
             icon: Icon(Icons.edit),
             onPressed: () async {
-              
+              // Navigate to EditProfileScreen and wait for result
               final updatedProfile = await Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -49,7 +49,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               );
 
-              
+              // Update UI with edited profile data if available
               if (updatedProfile != null) {
                 setState(() {
                   nama = updatedProfile.name;

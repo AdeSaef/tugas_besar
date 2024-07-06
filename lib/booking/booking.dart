@@ -1,16 +1,16 @@
-
+// booking.dart
 
 class Booking {
   String userName;
   String userEmail;
   String movieTitle;
-  String moviePoster; 
+  String moviePoster; // Tambahkan properti ini
 
   Booking({
     required this.userName,
     required this.userEmail,
     required this.movieTitle,
-    required this.moviePoster, 
+    required this.moviePoster, // Tambahkan parameter ini ke konstruktor
   });
 
   factory Booking.fromJson(Map<String, dynamic> json) {
@@ -18,7 +18,7 @@ class Booking {
       userName: json['userName'],
       userEmail: json['userEmail'],
       movieTitle: json['movieTitle'],
-      moviePoster: json['moviePoster'], 
+      moviePoster: json['moviePoster'], // Ambil nilai moviePoster dari JSON
     );
   }
 
@@ -27,7 +27,7 @@ class Booking {
       'userName': userName,
       'userEmail': userEmail,
       'movieTitle': movieTitle,
-      'moviePoster': moviePoster, 
+      'moviePoster': moviePoster, // Simpan nilai moviePoster dalam JSON
     };
   }
 }

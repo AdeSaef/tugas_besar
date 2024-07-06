@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'movie.dart'; 
-import 'profile/profile_manager.dart'; 
+import 'movie.dart'; // Sesuaikan dengan path model Anda
+import 'profile/profile_manager.dart'; // Sesuaikan dengan path ProfileManager Anda
 import 'profile/user_profile.dart';
 import 'booking/booking.dart';
 
@@ -28,13 +28,13 @@ class MovieDetailScreen extends StatelessWidget {
             ElevatedButton.icon(
               onPressed: () async {
                 try {
-                  
+                  // Print untuk memeriksa data sebelum booking
                   print('User Name: ${userProfile.name}');
                   print('User Email: ${userProfile.email}');
                   print('Movie Title: ${movie.title}');
                   print('Movie Poster: ${movie.posterPath}');
 
-                  
+                  // Simpan data booking di sini
                   Booking newBooking = Booking(
                     movieTitle: movie.title,
                     userName: userProfile.name,
@@ -42,15 +42,15 @@ class MovieDetailScreen extends StatelessWidget {
                     moviePoster: movie.posterPath,
                   );
 
-                  
+                  // Print untuk memeriksa objek booking sebelum menyimpan
                   print('New Booking: ${newBooking.toJson()}');
 
                   await ProfileManager().saveBooking(newBooking);
 
-                  
+                  // Print untuk konfirmasi setelah menyimpan booking
                   print('Booking berhasil disimpan!');
 
-                  
+                  // Tampilkan pesan sukses atau navigasi kembali
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('Booking berhasil disimpan!'),
@@ -58,14 +58,14 @@ class MovieDetailScreen extends StatelessWidget {
                     ),
                   );
                 } catch (error) {
-                  
+                  // Print error jika ada masalah
                   print('Error saat booking: $error');
                 }
               },
-              icon: Icon(Icons.event, color: Colors.black), 
+              icon: Icon(Icons.event, color: Colors.black), // Icon tiket
               label: Text('Booking', style: TextStyle(color: Colors.black)),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.yellow, 
+                backgroundColor: Colors.yellow, // Warna kuning
               ),
             ),
           ],

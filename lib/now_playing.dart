@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'movie_provider.dart'; 
-import 'movie_detail.dart'; 
-import 'profile/profile_manager.dart'; 
-import 'profile/user_profile.dart'; 
+import 'movie_provider.dart'; // Sesuaikan dengan path provider Anda
+import 'movie_detail.dart'; // Sesuaikan dengan path layar detail film Anda
+import 'profile/profile_manager.dart'; // Sesuaikan dengan path ProfileManager Anda
+import 'profile/user_profile.dart'; // Sesuaikan dengan path Profile Anda
 
 class NowPlayingMoviesScreen extends StatefulWidget {
   @override
@@ -12,13 +12,13 @@ class NowPlayingMoviesScreen extends StatefulWidget {
 
 class _NowPlayingMoviesScreenState extends State<NowPlayingMoviesScreen> {
   bool _isLoading = false;
-  late UserProfile userProfile; 
+  late UserProfile userProfile; // Deklarasikan userProfile
 
   @override
   void initState() {
     super.initState();
     _fetchNowPlayingMovies();
-    _loadUserProfile(); 
+    _loadUserProfile(); // Memuat userProfile saat initState
   }
 
   Future<void> _fetchNowPlayingMovies() async {
@@ -28,7 +28,7 @@ class _NowPlayingMoviesScreenState extends State<NowPlayingMoviesScreen> {
     try {
       await Provider.of<MovieProvider>(context, listen: false).fetchNowPlayingMovies();
     } catch (error) {
-      
+      // Handle error
       print('Error fetching now playing movies: $error');
     } finally {
       if (mounted) {
