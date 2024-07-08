@@ -39,7 +39,8 @@ class MainScreen extends StatelessWidget {
             SizedBox(width: 8),
             Text('Movie App',
                 style: TextStyle(
-                    color: Colors.white)), // Teks Movie App dengan warna putih
+                    color: Colors.white)
+                    ), // Teks Movie App dengan warna putih
           ],
         ),
       ),

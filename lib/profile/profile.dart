@@ -10,7 +10,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   // Initialize with placeholder values
-  String nama = 'Om asep bengkel';
+  String nama = 'asep bengkel';
   String email = 'coba_coba@gmail.com';
 
   @override
